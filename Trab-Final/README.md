@@ -1,6 +1,8 @@
 ## Engenharia de Software I
 ---
-#### Trabalho final
+### Trabalho final
+---
+- [Documento com especificações](https://github.com/TiagoGSouza/MATA62/blob/main/Trab-Final/EnunciadoDoTrabalho.pdf)
 ---
 #### Tarefas restantes:
 - Finalizar funcionalidades da classe AlunoGrad.java
