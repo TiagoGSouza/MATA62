@@ -1,6 +1,7 @@
 package classes_negocio.tipos_aluno;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.time.*;
 
 import classes_negocio.*;
@@ -21,14 +22,15 @@ public class AlunoGrad implements IUsuario {
         this.reservas = new ArrayList<>();
         this.emprestimos = new ArrayList<>();
         this.qtdEmprestimosAtivos = 0;
-//        this.verificadorEmp = Factory.obterVerificadorEmpGrad();
+        this.verificadorEmp = Fabrica.obterVerificadorEmprestimoAlunoGrad();
     }
 
     @Override
     public void realizarEmprestimo(Exemplar exemplar) {
-        // Colocar condição de reserva do exemplar na fachada
-        // Colocar quantidade de reservas existentes do livro for menor do que a quantidade de exemplares disponíveis
-        // Colocar condição de reserva do próprio aluno realizando o empréstimo
+        if(this.verificadorEmp.verificar(this, exemplar.getLivro())){
+            Emprestimo emp = new Emprestimo(this, exemplar, 3);
+            this.emprestimos.add(emp);
+        }
     } 
 
     @Override
@@ -49,5 +51,21 @@ public class AlunoGrad implements IUsuario {
             }
         }
         return false;
+    }
+
+    public int getEmprestimosAtivos(){
+        return this.qtdEmprestimosAtivos;
+    }
+
+    public List<Reserva> getReservas(){
+        return this.reservas;
+    }
+
+    public List<Emprestimo> getEmprestimos(){
+        return this.emprestimos;
+    }
+
+    public String getNome(){
+        return this.nome;
     }
 }

@@ -1,6 +1,12 @@
 package classes_negocio;
 
+import interfaces.IUsuario;
+
 public class Reserva {
-    private String id_livro;
-    private String id_usuario;
+    private Livro livro;
+    private IUsuario usuario;
+
+    public Livro getLivro(){
+        return this.livro;
+    }
 }
