@@ -1,7 +1,8 @@
-## Trabalho final
-Engenharia de Software I
+## Engenharia de Software I
 ---
-#### Tarefas:
+#### Trabalho final
+---
+#### Tarefas restantes:
 - Finalizar funcionalidades da classe AlunoGrad.java
 - Finalizar classe Emprestimo.java
 - Finalizar classe Exemplar.java
@@ -13,3 +14,4 @@ Engenharia de Software I
 - Atribuir funcionalidades acima aos outros tipos de usuário (alunoPos, professor)
 - Façade + Singleton
 - Command
+---
