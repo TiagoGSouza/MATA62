@@ -1,5 +1,4 @@
-## Trabalho final
-Engenharia de Software I
+## Engenharia de Software I
 ---
 #### Tarefas:
 - [X] Finalizar funcionalidades da classe AlunoGrad.java OK
