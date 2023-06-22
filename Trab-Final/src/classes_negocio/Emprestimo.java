@@ -24,4 +24,8 @@ public class Emprestimo {
     public Livro getLivro(){
         return this.exemplar.getLivro();
     }
+
+    public Exemplar getExemplar(){
+        return this.exemplar;
+    }
 }

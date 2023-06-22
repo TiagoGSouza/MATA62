@@ -6,6 +6,11 @@ import classes_negocio.Reserva;
 import interfaces.IUsuario;
 import interfaces.IVerificadorEmprestimo;
 
+/* 
+as verificações das regras de emprestimo podem ser todos em uma classe ou metodo usando ifs
+o proprio usuario pode conter e chamar seu verificador
+*/
+
 public class EmprestimoAlunoGrad implements IVerificadorEmprestimo{
   
   @Override
@@ -26,11 +31,11 @@ public class EmprestimoAlunoGrad implements IVerificadorEmprestimo{
 
     //se livro ter qtd de reservas < exemplares disponíveis OU usuario tem reserva
     //disponilidade de exemplar do livro (não-emprestados)
-    boolean exemplarDisponivel = true;
+    boolean existeExemplarDisponivel = true;
     int qtdReservasLivro = livro.getQtdReservas();
     int qtdExemplaresLivro = livro.getQtdExemplares();
     if(qtdExemplaresLivro <= qtdReservasLivro){
-      exemplarDisponivel = false;
+      existeExemplarDisponivel = false;
     }
 
     boolean usuarioFezReserva = false;
@@ -40,7 +45,7 @@ public class EmprestimoAlunoGrad implements IVerificadorEmprestimo{
       }
     }
     
-    if(!exemplarDisponivel && !usuarioFezReserva){
+    if(!existeExemplarDisponivel && !usuarioFezReserva){
       System.err.println("Não há exemplares disponíveis.");
       return false;
     }
