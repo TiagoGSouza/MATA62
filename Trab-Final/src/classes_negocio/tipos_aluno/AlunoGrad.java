@@ -9,7 +9,7 @@ import interfaces.IUsuario;
 import interfaces.IVerificadorEmprestimo;
 
 public class AlunoGrad implements IUsuario {
-    private String idUsuario;
+    private String codigo;
     private String nome;
     private ArrayList<Reserva> reservas;
     private ArrayList<Emprestimo> emprestimos;
@@ -17,8 +17,8 @@ public class AlunoGrad implements IUsuario {
     private ArrayList<Reserva> reservasAtivas;
     private IVerificadorEmprestimo verificadorEmp;
 
-    public AlunoGrad(String idUsuario, String nome){
-        this.idUsuario = idUsuario;
+    public AlunoGrad(String codigo, String nome){
+        this.codigo = codigo;
         this.nome = nome;
         this.reservas = new ArrayList<>();
         this.emprestimos = new ArrayList<>();
@@ -103,5 +103,9 @@ public class AlunoGrad implements IUsuario {
             }
             System.out.println("\nNão foi possível remover a reserva.");
         }
+    }
+
+    public String getCodigo(){
+        return this.codigo;
     }
 }

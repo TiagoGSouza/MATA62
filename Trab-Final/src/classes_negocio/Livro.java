@@ -67,5 +67,9 @@ public class Livro {
     return false;
   }
 
+  public String getCodigo(){
+    return this.codigo;
+  }
+
 }
 

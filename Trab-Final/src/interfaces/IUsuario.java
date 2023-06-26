@@ -17,4 +17,5 @@ public interface IUsuario {
         public List<Emprestimo> getEmprestimos();
         public String getNome();
         public void removerReserva(Livro livro);
+        public String getCodigo();
 }
