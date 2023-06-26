@@ -9,7 +9,9 @@ import interfaces.IUsuario;
 
 
 public class App {
-
+    /*
+     as alteracoes aqui foram so pra efeito de teste
+     */
 
     public static void main(String[] args) throws Exception {
         
@@ -18,18 +20,37 @@ public class App {
         Livro livro = new Livro("100", "Engenharia de Software", "AddisonWesley", "Ian Sommervile", "6", "2000");
         Exemplar exemplar = new Exemplar(livro, "01");
         livro.addExemplar(exemplar);
-        aluno1.realizarEmprestimo(livro);
+/*        if(livro.existeExemplarDisponivel()){
+            if(aluno1.realizarEmprestimo(livro)){
+                System.out.println("Empréstimo realizado.");
+            }
+            System.out.println("Usuario: " + aluno1.getNome());
+            System.out.println("Livro: " + livro.getTitulo());
+        } else{
+            System.out.println("Não existe exemplar disponivel.");
+        }
+*/        
         if(livro.existeExemplarDisponivel()){
-            Reserva reserva = aluno2.reservarLivro(livro);
+            Reserva reserva = aluno1.reservarLivro(livro);
             livro.addReserva(reserva);
         } else{
             System.out.println("Não existe exemplar disponivel.");
         }
-//        aluno2.realizarEmprestimo(livro);
+      if(livro.existeExemplarDisponivel()){
+            if(aluno2.realizarEmprestimo(livro)){
+                System.out.println("Empréstimo realizado.");
+            }
+        } else{
+            System.out.println("Não existe exemplar disponivel.");
+        }
+        System.out.println("Usuario: " + aluno2.getNome());
+        System.out.println("Livro: " + livro.getTitulo());
 
+/* 
         System.out.println("Emprestimos: " + aluno1.getEmprestimosAtivos());
         for (Emprestimo emp : aluno1.getEmprestimos()) {
             System.out.println("Livro: " + emp.getExemplar().getLivro().getTitulo());
         }
+*/        
     }
 }

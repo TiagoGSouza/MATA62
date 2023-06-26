@@ -27,8 +27,9 @@ public class AlunoGrad implements IUsuario {
         this.verificadorEmp = Fabrica.obterVerificadorEmprestimoAlunoGrad();
     }
 
+    //mudei o retorno da funcao de realizr emprestimo pra fazer as validacoes corretas
     @Override
-    public void realizarEmprestimo(Livro livro) {
+    public boolean realizarEmprestimo(Livro livro) {
         if(this.verificadorEmp.verificar(this, livro)){
             Exemplar e = livro.getexisteExemplarDisponivel();
             e.setDisponilidade(false);
@@ -36,7 +37,9 @@ public class AlunoGrad implements IUsuario {
             this.emprestimos.add(emp);
             this.emprestimosAtivos.add(emp);
             this.removerReserva(livro);
+            return true;
         }
+        return false;
     } 
 
     @Override

@@ -6,8 +6,9 @@ import classes_negocio.Emprestimo;
 import classes_negocio.Livro;
 import classes_negocio.Reserva;
 
+//precisei mudar o retorno da funcao de realizar emprestimo
 public interface IUsuario {
-        public void realizarEmprestimo(Livro livro);
+        public boolean realizarEmprestimo(Livro livro);
         public void devolverExemplar(Livro livro);
         public Reserva reservarLivro(Livro livro);
         public boolean existeExemplarEmAtraso();
