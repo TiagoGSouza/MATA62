@@ -16,6 +16,7 @@ public class Console {
 
     public void iniciarComandos(){
         this.comandos.put("res", new RealizarEmprestimo());
+        this.comandos.put("sai", new FinalizaApp());
     }
 
     public void programa(){
@@ -24,19 +25,25 @@ public class Console {
         biblioteca.inicializarBiblioteca();
         Scanner teclado = new Scanner(System.in);
         String opcao;
-        String[] parametros;
+        String comando;
+        String parametros;
         boolean condicao = true;
 
         while (condicao) {
             opcao = teclado.nextLine();
 
-            parametros = opcao.split(" ");
-            System.out.println("Paramentros[0]: " + parametros[0]);
-            System.out.println("Paramentros[1]: " + parametros[1]);
-            System.out.println("Paramentros[2]: " + parametros[2]);
+            comando = opcao.substring(0, 3);
+            try {
+                parametros = opcao.substring(4);
+            } catch (Exception e) {
+                parametros = "vazio";
+            }
             
-            IComandos c = comandos.get(parametros[0]);
-            condicao = c.executa(biblioteca, parametros[1], parametros[2]);
+            System.out.println("Comando: " + comando);
+            System.out.println("Paramentros: " + parametros);
+            
+            IComandos c = comandos.get(comando);
+            condicao = c.executa(biblioteca, parametros);
 
         }
 
