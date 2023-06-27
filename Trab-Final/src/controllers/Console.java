@@ -15,7 +15,7 @@ public class Console {
     }
 
     public void iniciarComandos(){
-        this.comandos.put("res", new RealizarEmprestimo());
+        this.comandos.put("emp", new RealizarEmprestimo());
         this.comandos.put("sai", new FinalizaApp());
     }
 

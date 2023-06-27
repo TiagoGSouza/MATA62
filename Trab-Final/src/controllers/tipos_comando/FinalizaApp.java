@@ -1,4 +1,4 @@
-package controllers;
+package controllers.tipos_comando;
 
 import interfaces.IComandos;
 
