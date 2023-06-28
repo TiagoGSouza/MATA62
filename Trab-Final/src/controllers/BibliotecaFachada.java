@@ -76,36 +76,47 @@ public class BibliotecaFachada {
         System.out.println("\nQt exemplares: " + livro.getQtdExemplares());
         int nReservas = livro.getQtdReservas();
         // Titulo
-        System.out.println("\nTítulo: " + livro.getTitulo());
-        
-
+        System.out.println("Título: " + livro.getTitulo());
         // Reservas
         if(nReservas == 0){
-            System.out.println("\nNúmero de reservas: " + nReservas);
+            System.out.println("Número de reservas: " + nReservas);
         }else{
-            System.out.println("\nReservas: ");
+            System.out.println("Reservas: ");
             int i = 1;
             for(Reserva reserva : livro.getReservas()){
-                System.out.println("\n" + i + ". " + reserva.getUsuarioNome());
+                System.out.println(i + ". " + reserva.getUsuarioNome());
                 i = i+1;
             }
         }
-
         // Exemplares
-        System.out.println("\nExemplares: \nCodigo / Status /    Se Emprestado:    / Nome do Usuario / Data de Emprestimo / Data de Devolucao");
+        System.out.println("\nExemplares: \nCodigo | Status | Nome do Usuario | Data de Emprestimo | Data de Devolucao");
         for(Exemplar exemplar : livro.getExemplares()){
-            System.out.println("\n" + exemplar.getCodigo() + " | " + exemplar.getDisponibilidade() + " | " + exemplar.getEmprestimoUsuarioNome() + " | " + exemplar.getEmprestimoDataEmp() + " | " + exemplar.getEmprestimoDataDev());
+            System.out.println(exemplar.getCodigo() + " | " + exemplar.getStringDisponibilidade() + " | " + exemplar.getEmprestimoUsuarioNome() + " | " + exemplar.getEmprestimoDataEmp() + " | " + exemplar.getEmprestimoDataDev());
         }
 
     }
 
     public void consultarAluno(String codigoAluno){
         IUsuario usuario = getUsuario(codigoAluno);
-        System.out.println("Emprestimos");
-        for (Emprestimo emprestimo : usuario.getEmprestimos()) {
-            System.out.println("Livro: " + emprestimo.getLivro());
-            System.out.println("Data do emprestimo: " + emprestimo.getDataEmprestimo());
-            System.out.println("Data de devolução: " + emprestimo.getDataDevolucao());
+        try{
+            System.out.println("\nEmprestimos: \nTitulo | Data de Emprestimo | Status | Data de Devolucao");
+            int i = 1;
+            for (Emprestimo emprestimo : usuario.getEmprestimos()) {
+                System.out.println(i + ". " + emprestimo.getTituloLivro() + " | " + emprestimo.getDataEmprestimo() + " | " + usuario.getStatusEmprestimo(emprestimo) + " | " + emprestimo.getDataDevolucao());
+                i=i+1;            
+            }
+        }catch(Exception e){
+                System.out.println("O usuário não possui emprestimos.");
+        }
+        try{
+            System.out.println("\nReservas: \nTitulo | Data de solicitação");
+            int j = 1;
+            for (Reserva reserva : usuario.getReservas()) {
+                System.out.println(j + ". " + reserva.getTituloLivro() + " | " + reserva.getDataReserva());
+                j=j+1;
+            }
+        } catch (Exception e){
+            System.out.println("O usuário não possui reservas.");
         }
     }
 

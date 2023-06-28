@@ -120,4 +120,12 @@ public class AlunoGrad implements IUsuario {
         }
         return null;
     }
+
+    public String getStatusEmprestimo(Emprestimo emprestimo){
+        if(this.emprestimosAtivos.contains(emprestimo)){
+            return "Ativo";
+        } else {
+            return "Finalizado";
+        }
+    }
 }

@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+import controllers.tipos_comando.ConsultarAluno;
 import controllers.tipos_comando.ConsultarLivro;
 import controllers.tipos_comando.DevolverLivro;
 import controllers.tipos_comando.FinalizaApp;
@@ -25,6 +26,7 @@ public class Console {
         this.comandos.put("res", new ReservarLivro());
 
         this.comandos.put("liv", new ConsultarLivro());
+        this.comandos.put("usu", new ConsultarAluno());
         this.comandos.put("sai", new FinalizaApp());
     }
 

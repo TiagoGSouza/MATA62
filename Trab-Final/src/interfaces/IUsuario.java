@@ -19,4 +19,5 @@ public interface IUsuario {
         public void removerReserva(Livro livro);
         public String getCodigo();
         public String getExemplarEmprestado(Livro livro);
+        public String getStatusEmprestimo(Emprestimo emprestimo);
 }

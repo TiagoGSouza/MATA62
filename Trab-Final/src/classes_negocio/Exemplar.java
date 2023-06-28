@@ -49,6 +49,14 @@ public class Exemplar {
         }
     }
 
+    public String getStringDisponibilidade(){
+        if(this.disponilidade){
+            return "Disponivel";
+        }else{
+            return "Indisponivel";
+        }
+    }
+
     public void cancelarEmprestimo(){
         this.emprestimo = null;
     }

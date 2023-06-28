@@ -30,4 +30,8 @@ public class Reserva {
     public LocalDate getDataReserva(){
         return this.dataReserva;
     }
+
+    public String getTituloLivro(){
+        return this.livro.getTitulo();
+    }
 }
