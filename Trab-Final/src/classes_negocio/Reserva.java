@@ -19,6 +19,10 @@ public class Reserva {
         return this.usuario;
     }
 
+    public String getUsuarioNome(){
+        return usuario.getNome();
+    }
+
     public Livro getLivro(){
         return this.livro;
     }

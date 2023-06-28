@@ -4,6 +4,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+import controllers.tipos_comando.ConsultarLivro;
+import controllers.tipos_comando.DevolverLivro;
+import controllers.tipos_comando.FinalizaApp;
+import controllers.tipos_comando.RealizarEmprestimo;
+import controllers.tipos_comando.ReservarLivro;
 import interfaces.IComandos;
 
 public class Console {
@@ -16,6 +21,10 @@ public class Console {
 
     public void iniciarComandos(){
         this.comandos.put("emp", new RealizarEmprestimo());
+        this.comandos.put("dev", new DevolverLivro());
+        this.comandos.put("res", new ReservarLivro());
+
+        this.comandos.put("liv", new ConsultarLivro());
         this.comandos.put("sai", new FinalizaApp());
     }
 
@@ -38,9 +47,6 @@ public class Console {
             } catch (Exception e) {
                 parametros = "vazio";
             }
-            
-            System.out.println("Comando: " + comando);
-            System.out.println("Paramentros: " + parametros);
             
             IComandos c = comandos.get(comando);
             condicao = c.executa(biblioteca, parametros);

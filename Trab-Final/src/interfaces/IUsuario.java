@@ -9,7 +9,7 @@ import classes_negocio.Reserva;
 //precisei mudar o retorno da funcao de realizar emprestimo
 public interface IUsuario {
         public boolean realizarEmprestimo(Livro livro);
-        public void devolverExemplar(Livro livro);
+        public boolean devolverExemplar(Livro livro);
         public Reserva reservarLivro(Livro livro);
         public boolean existeExemplarEmAtraso();
         public int getEmprestimosAtivos();
@@ -18,4 +18,5 @@ public interface IUsuario {
         public String getNome();
         public void removerReserva(Livro livro);
         public String getCodigo();
+        public String getExemplarEmprestado(Livro livro);
 }

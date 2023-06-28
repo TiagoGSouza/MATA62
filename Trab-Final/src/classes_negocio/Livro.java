@@ -37,6 +37,7 @@ public class Livro {
   }
   
   public void addExemplar(Exemplar exemplar){
+    System.out.println("ola");
     this.listaExemplares.add(exemplar);
     this.qtdExemplares += 1;
   }
@@ -69,6 +70,22 @@ public class Livro {
 
   public String getCodigo(){
     return this.codigo;
+  }
+
+  public void setExemplarDisponivel(String codigoExemplar){
+    for (Exemplar exemplar : listaExemplares) {
+      if(exemplar.getCodigo().equals(codigoExemplar)){
+        exemplar.setDisponibilidade(true);
+      }      
+    }
+  }
+
+  public List<Reserva> getReservas(){
+    return this.listaReservas;
+  }
+
+  public List<Exemplar> getExemplares(){
+    return this.listaExemplares;
   }
 
 }

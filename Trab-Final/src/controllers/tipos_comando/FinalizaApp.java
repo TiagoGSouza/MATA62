@@ -1,5 +1,6 @@
 package controllers.tipos_comando;
 
+import controllers.BibliotecaFachada;
 import interfaces.IComandos;
 
 public class FinalizaApp implements IComandos {

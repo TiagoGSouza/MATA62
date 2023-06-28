@@ -25,7 +25,23 @@ public class Emprestimo {
         return this.exemplar.getLivro();
     }
 
+    public String getUsuarioNome(){
+        return this.usuario.getNome();
+    }
+
     public Exemplar getExemplar(){
         return this.exemplar;
+    }
+
+    public void removerExemplar(){
+        this.exemplar.cancelarEmprestimo();
+    }
+
+    public String getTituloLivro(){
+        return this.exemplar.getTituloLivro();
+    }
+
+    public LocalDate getDataEmprestimo() {
+        return this.dataEmprestimo;
     }
 }

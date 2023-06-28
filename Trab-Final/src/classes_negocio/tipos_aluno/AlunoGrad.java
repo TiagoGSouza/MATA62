@@ -32,8 +32,9 @@ public class AlunoGrad implements IUsuario {
     public boolean realizarEmprestimo(Livro livro) {
         if(this.verificadorEmp.verificar(this, livro)){
             Exemplar e = livro.getexisteExemplarDisponivel();
-            e.setDisponilidade(false);
+            e.setDisponibilidade(false);
             Emprestimo emp = new Emprestimo(this, e, 3);
+            e.setEmprestimo(emp);
             this.emprestimos.add(emp);
             this.emprestimosAtivos.add(emp);
             this.removerReserva(livro);
@@ -43,14 +44,16 @@ public class AlunoGrad implements IUsuario {
     } 
 
     @Override
-    public void devolverExemplar(Livro livro) {
+    public boolean devolverExemplar(Livro livro) {
         for(Emprestimo emprestimo : this.emprestimos){
             if(emprestimo.getLivro() == livro){
+                emprestimo.removerExemplar();
                 this.emprestimosAtivos.remove(emprestimo);
-                System.out.println("\nExemplar devolvido com sucesso.");
+                System.out.println("\nExemplar do livro " + livro.getTitulo() + " devolvido com sucesso.");
+                return true;
             }
         }
-        System.out.println("\nNão foi possível realizar a operação.");
+        return false;
     }
 
     @Override
@@ -107,5 +110,14 @@ public class AlunoGrad implements IUsuario {
 
     public String getCodigo(){
         return this.codigo;
+    }
+
+    public String getExemplarEmprestado(Livro livro){
+        for (Emprestimo emprestimo : emprestimos) {
+            if(emprestimo.getLivro() == livro){
+                return emprestimo.getExemplar().getCodigo();
+            }
+        }
+        return null;
     }
 }
