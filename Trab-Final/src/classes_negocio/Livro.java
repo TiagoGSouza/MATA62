@@ -37,7 +37,6 @@ public class Livro {
   }
   
   public void addExemplar(Exemplar exemplar){
-    System.out.println("ola");
     this.listaExemplares.add(exemplar);
     this.qtdExemplares += 1;
   }
