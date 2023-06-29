@@ -40,22 +40,6 @@ public class EmprestimoAlunoGrad implements IVerificadorEmprestimo{
       return false;
     }
 
-    //se livro ter qtd de reservas < exemplares disponíveis OU usuario tem reserva
-    //disponilidade de exemplar do livro (não-emprestados)
-    boolean existeExemplarDisponivel = true;
-    int qtdReservasLivro = livro.getQtdReservas();
-    int qtdExemplaresLivro = livro.getQtdExemplares();
-    if(qtdExemplaresLivro <= qtdReservasLivro){
-      existeExemplarDisponivel = false;
-    }
-
-    boolean usuarioFezReserva = verificadorReserva.usuarioValido(usuario, livro);
-    
-    if(!existeExemplarDisponivel && !usuarioFezReserva){
-      System.err.println("Não há exemplares disponíveis.");
-      return false;
-    }
-
     if(!verificadorEmprestimosAtivos.usuarioValido(usuario, livro)){
       System.err.println("\nO livro já foi emprestado pelo usuário.");
       return false;
@@ -63,4 +47,9 @@ public class EmprestimoAlunoGrad implements IVerificadorEmprestimo{
 
     return true;
   }
+
+  public boolean verificarReserva(IUsuario usuario, Livro livro){
+    return verificadorReserva.usuarioValido(usuario, livro);
+  }
+
 }

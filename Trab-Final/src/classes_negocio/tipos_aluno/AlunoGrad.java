@@ -124,4 +124,8 @@ public class AlunoGrad implements IUsuario {
     public int getQtdEmprestimosPossiveis(){
         return this.qtdDiasDeEmprestimo;
     }
+
+    public boolean fezReserva(Livro livro){
+        return this.verificadorEmp.verificarReserva(this, livro);
+    }
 }

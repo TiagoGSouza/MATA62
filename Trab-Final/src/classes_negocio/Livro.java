@@ -67,6 +67,13 @@ public class Livro {
     return false;
   }
 
+  public boolean existeExemplarNaoReservado(){
+    if(this.qtdExemplares <= qtdReservas){
+      return false;
+    }
+    return true;
+  }
+
   public String getCodigo(){
     return this.codigo;
   }

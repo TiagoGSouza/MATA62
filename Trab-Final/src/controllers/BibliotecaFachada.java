@@ -39,13 +39,15 @@ public class BibliotecaFachada {
         IUsuario usuario = getUsuario(codigoUsuario);
         Livro livro = getLivro(codigoLivro);
         if(livro.existeExemplarDisponivel()){
-            if(usuario.realizarEmprestimo(livro)){
-                System.out.println("Empréstimo realizado.");
+            if(livro.existeExemplarNaoReservado() || usuario.fezReserva(livro)){
+                if(usuario.realizarEmprestimo(livro)){
+                    System.out.println("Empréstimo  do livro " + livro.getTitulo() + " realizado para o usuário " + usuario.getNome() + ".");
+                }
+            } else {
+                System.out.println("Não foi possível emprestar o livro " + livro.getTitulo() + " para o usuário " + usuario.getNome() + " pois os exemplares estão reservados ou emprestados.");
             }
-            System.out.println("Usuario: " + usuario.getNome());
-            System.out.println("Livro: " + livro.getTitulo());
         } else{
-            System.out.println("Não existe exemplar disponivel.");
+            System.out.println("Não foi possível emprestar o livro " + livro.getTitulo() + " para o usuário " + usuario.getNome() + " pois não existe exemplar disponivel.");
         }
     }
 
@@ -73,7 +75,6 @@ public class BibliotecaFachada {
 
     public void consultarLivro(String codigoLivro){
         Livro livro = getLivro(codigoLivro);
-        System.out.println("\nQt exemplares: " + livro.getQtdExemplares());
         int nReservas = livro.getQtdReservas();
         // Titulo
         System.out.println("Título: " + livro.getTitulo());
