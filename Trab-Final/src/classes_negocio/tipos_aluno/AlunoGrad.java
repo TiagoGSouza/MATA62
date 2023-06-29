@@ -73,17 +73,6 @@ public class AlunoGrad implements IUsuario {
         }
     }
 
-    //remover esse metodo e deixar para a classe de verificação
-    @Override
-    public boolean existeExemplarEmAtraso() {
-        for (Emprestimo emprestimo : this.emprestimos) {
-            if (LocalDate.now().isAfter(emprestimo.getDataDevolucao())){
-                return true;
-            }
-        }
-        return false;
-    }
-
     public int getEmprestimosAtivos(){
         return this.emprestimosAtivos.size();
     }
