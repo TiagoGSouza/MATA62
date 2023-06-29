@@ -1,18 +1,18 @@
 package classes_negocio.tipos_emprestimo.tipos_verificador;
 
-import java.time.LocalDate;
-
 import classes_negocio.Emprestimo;
+import classes_negocio.Livro;
 import interfaces.IUsuario;
 
-public class VerificadorAtraso {
+public class VerificadorEmprestimosAtivos {
 
-    public boolean usuarioValido(IUsuario usuario){
+    public boolean usuarioValido(IUsuario usuario, Livro livro){
         for (Emprestimo emprestimo : usuario.getEmprestimos()) {
-            if(LocalDate.now().isAfter(emprestimo.getDataDevolucao())){
+            if(emprestimo.getLivro().equals(livro)){
                 return false;
             }
         }
         return true;
     }
+
 }

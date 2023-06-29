@@ -16,6 +16,7 @@ public class AlunoGrad implements IUsuario {
     private ArrayList<Emprestimo> emprestimosAtivos;
     private ArrayList<Reserva> reservasAtivas;
     private IVerificadorEmprestimo verificadorEmp;
+    private int qtdDiasDeEmprestimo;
 
     public AlunoGrad(String codigo, String nome){
         this.codigo = codigo;
@@ -25,6 +26,7 @@ public class AlunoGrad implements IUsuario {
         this.emprestimosAtivos = new ArrayList<>();
         this.reservasAtivas = new ArrayList<>();
         this.verificadorEmp = Fabrica.obterVerificadorEmprestimoAlunoGrad();
+        this.qtdDiasDeEmprestimo = TempoEmprestimo.ALUNOGRAD.getQtdDias();
     }
 
     //mudei o retorno da funcao de realizr emprestimo pra fazer as validacoes corretas
@@ -71,6 +73,7 @@ public class AlunoGrad implements IUsuario {
         }
     }
 
+    //remover esse metodo e deixar para a classe de verificação
     @Override
     public boolean existeExemplarEmAtraso() {
         for (Emprestimo emprestimo : this.emprestimos) {
@@ -127,5 +130,9 @@ public class AlunoGrad implements IUsuario {
         } else {
             return "Finalizado";
         }
+    }
+
+    public int getQtdEmprestimosPossiveis(){
+        return this.qtdDiasDeEmprestimo;
     }
 }

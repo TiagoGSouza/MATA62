@@ -1,8 +1,10 @@
 package classes_negocio.tipos_emprestimo;
 
-import classes_negocio.Emprestimo;
 import classes_negocio.Livro;
-import classes_negocio.Reserva;
+import classes_negocio.tipos_emprestimo.tipos_verificador.VerificadorAtraso;
+import classes_negocio.tipos_emprestimo.tipos_verificador.VerificadorEmprestimosAtivos;
+import classes_negocio.tipos_emprestimo.tipos_verificador.VerificadorLimiteEmprestimos;
+import classes_negocio.tipos_emprestimo.tipos_verificador.VerificadorReserva;
 import interfaces.IUsuario;
 import interfaces.IVerificadorEmprestimo;
 
@@ -12,19 +14,28 @@ o proprio usuario pode conter e chamar seu verificador
 */
 
 public class EmprestimoAlunoGrad implements IVerificadorEmprestimo{
+
+  private VerificadorAtraso verificadorAtraso;
+  private VerificadorReserva verificadorReserva;
+  private VerificadorLimiteEmprestimos verificadorLimiteEmprestimos;
+  private VerificadorEmprestimosAtivos verificadorEmprestimosAtivos;
+
+  public EmprestimoAlunoGrad(){
+    this.verificadorAtraso = new VerificadorAtraso();
+    this.verificadorReserva = new VerificadorReserva();
+    this.verificadorLimiteEmprestimos = new VerificadorLimiteEmprestimos();
+    this.verificadorEmprestimosAtivos = new VerificadorEmprestimosAtivos();
+  }
   
   @Override
   public boolean verificar(IUsuario usuario, Livro livro){
 
-    //usuario nao ter exemplares em atraso
-    boolean exemplaresEmAtraso = usuario.existeExemplarEmAtraso();
-    if(exemplaresEmAtraso==true){
+    if(!verificadorAtraso.usuarioValido(usuario)){
       System.err.println("\nO usuário possui exemplares ainda não devolvidos em atraso.");
       return false;
     }
 
-    //estar dentro do limite de emprestimos
-    if (usuario.getEmprestimosAtivos() >= 3){
+    if(!verificadorLimiteEmprestimos.usuarioValido(usuario)){
       System.err.println("\nO usuário ultrapassou o limite de empréstimos.");
       return false;
     }
@@ -38,25 +49,18 @@ public class EmprestimoAlunoGrad implements IVerificadorEmprestimo{
       existeExemplarDisponivel = false;
     }
 
-    boolean usuarioFezReserva = false;
-    for (Reserva  reserva: usuario.getReservas()) {
-      if(reserva.getLivro() == livro){
-        usuarioFezReserva = true;
-      }
-    }
+    boolean usuarioFezReserva = verificadorReserva.usuarioValido(usuario, livro);
     
     if(!existeExemplarDisponivel && !usuarioFezReserva){
       System.err.println("Não há exemplares disponíveis.");
       return false;
     }
 
-    //usuario nao ter emprestimos do livro
-    for (Emprestimo emprestimo : usuario.getEmprestimos()) {
-      if(emprestimo.getLivro().equals(livro)){
-        System.err.println("\nO livro já foi emprestado pelo usuário.");
-        return false;
-      }
+    if(!verificadorEmprestimosAtivos.usuarioValido(usuario, livro)){
+      System.err.println("\nO livro já foi emprestado pelo usuário.");
+      return false;
     }
+
     return true;
   }
 }
