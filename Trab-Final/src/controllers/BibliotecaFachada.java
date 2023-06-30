@@ -47,8 +47,8 @@ public class BibliotecaFachada {
         livros.get(3).addExemplar(new Exemplar(livros.get(3), "05"));//201
         livros.get(4).addExemplar(new Exemplar(livros.get(4), "06"));//300
         livros.get(4).addExemplar(new Exemplar(livros.get(4), "07"));//300
-        livros.get(5).addExemplar(new Exemplar(livros.get(5), "08"));//400
-        livros.get(5).addExemplar(new Exemplar(livros.get(5), "09"));//400    
+        livros.get(6).addExemplar(new Exemplar(livros.get(5), "08"));//400
+        livros.get(6).addExemplar(new Exemplar(livros.get(5), "09"));//400    
     }
 
     public void realizarEmprestimo(String codigoUsuario, String codigoLivro){
