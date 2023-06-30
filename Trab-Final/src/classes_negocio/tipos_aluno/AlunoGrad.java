@@ -45,7 +45,7 @@ public class AlunoGrad implements IUsuario {
 
     @Override
     public boolean devolverExemplar(Livro livro) {
-        for(Emprestimo emprestimo : this.emprestimos){
+        for(Emprestimo emprestimo : this.emprestimosAtivos){
             if(emprestimo.getLivro() == livro){
                 emprestimo.removerExemplar();
                 this.emprestimosAtivos.remove(emprestimo);
