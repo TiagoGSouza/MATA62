@@ -41,7 +41,7 @@ public class VerificadorEmprestimoAluno implements IVerificadorEmprestimo{
     }
 
     if(!verificadorEmprestimosAtivos.usuarioValido(usuario, livro)){
-      System.err.println("\nO livro já está emprestado ao usuário " + usuario.getNome() + ".");
+      System.err.println("\nO livro " + livro.getTitulo() + " já está emprestado ao usuário " + usuario.getNome() + ".");
       return false;
     }
 

@@ -58,8 +58,6 @@ public class BibliotecaFachada {
         if(livro.existeExemplarDisponivel()){
             if(usuario.realizarEmprestimo(livro)){
                 System.out.println("\nEmpréstimo  do livro " + livro.getTitulo() + " realizado para o usuário " + usuario.getNome() + ".");
-            } else {
-                System.out.println("\nNão foi possível emprestar o livro " + livro.getTitulo() + " para o usuário " + usuario.getNome() + " pois os exemplares estão reservados ou emprestados.");
             }
         } else{
             System.out.println("\nNão foi possível emprestar o livro " + livro.getTitulo() + " para o usuário " + usuario.getNome() + " pois não existe exemplar disponivel.");
