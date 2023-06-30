@@ -27,7 +27,7 @@ public class AlunoGrad implements IUsuario {
         this.reservasAtivas = new ArrayList<>();
         this.verificadorEmp = Fabrica.obterVerificadorEmprestimoAlunoGrad();
         this.qtdDiasDeEmprestimo = TempoEmprestimo.ALUNOGRAD.getQtdDias();
-        this.limiteEmprestimosAtivos = Fabrica.obterLimiteDeEmprestimosAlunoGrad();
+        this.limiteEmprestimosAtivos = LimiteEmprestimos.ALUNOGRAD.getQtdDias();
     }
 
     @Override

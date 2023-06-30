@@ -7,9 +7,4 @@ public class Fabrica {
     public static IVerificadorEmprestimo obterVerificadorEmprestimoAlunoGrad(){
         return new EmprestimoAlunoGrad();
     }
-
-    public static int obterLimiteDeEmprestimosAlunoGrad() {
-        return 3;
-    }
-
 }

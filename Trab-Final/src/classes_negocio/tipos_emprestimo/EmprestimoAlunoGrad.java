@@ -31,17 +31,18 @@ public class EmprestimoAlunoGrad implements IVerificadorEmprestimo{
   public boolean verificar(IUsuario usuario, Livro livro){
 
     if(!verificadorAtraso.usuarioValido(usuario)){
-      System.err.println("\nO usuário possui exemplares ainda não devolvidos em atraso.");
+      System.err.println("\nO usuário " + usuario.getNome() + " possui exemplares ainda não devolvidos em atraso.");
       return false;
     }
 
     if(!verificadorLimiteEmprestimos.usuarioValido(usuario)){
-      System.err.println("\nO usuário ultrapassou o limite de empréstimos.");
+      System.err.println("\nO usuário " + usuario.getNome() + "  ultrapassou o limite de empréstimos.");
       return false;
     }
 
     if(!verificadorEmprestimosAtivos.usuarioValido(usuario, livro)){
-      System.err.println("\nO livro já foi emprestado pelo usuário.");
+      System.err.println("\nO livro já está emprestado ao usuário " + usuario.getNome() + ".");
+
       return false;
     }
 
