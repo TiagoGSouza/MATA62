@@ -93,7 +93,7 @@ public class BibliotecaFachada {
         Livro livro = getLivro(codigoLivro);
         int nReservas = livro.getQtdReservas();
         // Titulo
-        System.out.println("Título: " + livro.getTitulo());
+        System.out.println("\nTítulo: " + livro.getTitulo());
         // Reservas
         if(nReservas == 0){
             System.out.println("Número de reservas: " + nReservas);
