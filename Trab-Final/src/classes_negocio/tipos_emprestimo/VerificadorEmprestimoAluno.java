@@ -13,14 +13,14 @@ as verificações das regras de emprestimo podem ser todos em uma classe ou meto
 o proprio usuario pode conter e chamar seu verificador
 */
 
-public class EmprestimoAlunoGrad implements IVerificadorEmprestimo{
+public class VerificadorEmprestimoAluno implements IVerificadorEmprestimo{
 
   private VerificadorAtraso verificadorAtraso;
   private VerificadorReserva verificadorReserva;
   private VerificadorLimiteEmprestimos verificadorLimiteEmprestimos;
   private VerificadorEmprestimosAtivos verificadorEmprestimosAtivos;
 
-  public EmprestimoAlunoGrad(){
+  public VerificadorEmprestimoAluno(){
     this.verificadorAtraso = new VerificadorAtraso();
     this.verificadorReserva = new VerificadorReserva();
     this.verificadorLimiteEmprestimos = new VerificadorLimiteEmprestimos();
@@ -36,21 +36,22 @@ public class EmprestimoAlunoGrad implements IVerificadorEmprestimo{
     }
 
     if(!verificadorLimiteEmprestimos.usuarioValido(usuario)){
-      System.err.println("\nO usuário " + usuario.getNome() + "  ultrapassou o limite de empréstimos.");
+      System.err.println("\nO usuário " + usuario.getNome() + " ultrapassou o limite de empréstimos.");
       return false;
     }
 
     if(!verificadorEmprestimosAtivos.usuarioValido(usuario, livro)){
       System.err.println("\nO livro já está emprestado ao usuário " + usuario.getNome() + ".");
+      return false;
+    }
 
+    if(!(verificadorReserva.usuarioValido(usuario, livro) || livro.existeExemplarNaoReservado())){
+      System.out.println("\nO usuário " + usuario.getNome() + " não fez reserva do livro " + livro.getTitulo() + ".");
       return false;
     }
 
     return true;
   }
 
-  public boolean verificarReserva(IUsuario usuario, Livro livro){
-    return verificadorReserva.usuarioValido(usuario, livro);
-  }
 
 }

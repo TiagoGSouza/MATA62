@@ -20,5 +20,4 @@ public interface IUsuario {
         public String getExemplarEmprestado(Livro livro);
         public String getStatusEmprestimo(Emprestimo emprestimo);
         public int getQtdEmprestimosPossiveis();
-        public boolean fezReserva(Livro livro);
 }

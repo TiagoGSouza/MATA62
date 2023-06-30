@@ -8,6 +8,7 @@ import classes_negocio.Exemplar;
 import classes_negocio.Livro;
 import classes_negocio.Reserva;
 import classes_negocio.tipos_aluno.AlunoGrad;
+import classes_negocio.tipos_aluno.AlunoPos;
 import interfaces.IUsuario;
 
 public class BibliotecaFachada {
@@ -28,7 +29,7 @@ public class BibliotecaFachada {
     public void inicializarBiblioteca(){
         //Usuarios
         usuarios.add(new AlunoGrad("123", "João da Silva"));
-
+        usuarios.add(new AlunoPos("456", "Luiz Fernando Rodrigues"));
         usuarios.add(new AlunoGrad("789", "Pedro Paulo"));
         //Livros
         livros.add(new Livro("100", "Engenharia de Software", "AddisonWesley", "Ian Sommervile", "6", "2000"));
@@ -55,10 +56,8 @@ public class BibliotecaFachada {
         IUsuario usuario = getUsuario(codigoUsuario);
         Livro livro = getLivro(codigoLivro);
         if(livro.existeExemplarDisponivel()){
-            if(livro.existeExemplarNaoReservado() || usuario.fezReserva(livro)){
-                if(usuario.realizarEmprestimo(livro)){
-                    System.out.println("\nEmpréstimo  do livro " + livro.getTitulo() + " realizado para o usuário " + usuario.getNome() + ".");
-                }
+            if(usuario.realizarEmprestimo(livro)){
+                System.out.println("\nEmpréstimo  do livro " + livro.getTitulo() + " realizado para o usuário " + usuario.getNome() + ".");
             } else {
                 System.out.println("\nNão foi possível emprestar o livro " + livro.getTitulo() + " para o usuário " + usuario.getNome() + " pois os exemplares estão reservados ou emprestados.");
             }

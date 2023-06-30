@@ -3,11 +3,14 @@ package classes_negocio.tipos_aluno;
 import java.util.ArrayList;
 import java.util.List;
 
-import classes_negocio.*;
+import classes_negocio.Emprestimo;
+import classes_negocio.Exemplar;
+import classes_negocio.Livro;
+import classes_negocio.Reserva;
 import interfaces.IUsuario;
 import interfaces.IVerificadorEmprestimo;
 
-public class AlunoGrad implements IUsuario {
+public class AlunoPos implements IUsuario{
     private String codigo;
     private String nome;
     private ArrayList<Reserva> reservas;
@@ -18,7 +21,7 @@ public class AlunoGrad implements IUsuario {
     private int qtdDiasDeEmprestimo;
     private int limiteEmprestimosAtivos;
 
-    public AlunoGrad(String codigo, String nome){
+    public AlunoPos(String codigo, String nome){
         this.codigo = codigo;
         this.nome = nome;
         this.reservas = new ArrayList<>();
@@ -26,8 +29,8 @@ public class AlunoGrad implements IUsuario {
         this.emprestimosAtivos = new ArrayList<>();
         this.reservasAtivas = new ArrayList<>();
         this.verificadorEmp = Fabrica.obterVerificadorEmprestimoAluno();
-        this.qtdDiasDeEmprestimo = TempoEmprestimo.ALUNOGRAD.getQtdDias();
-        this.limiteEmprestimosAtivos = LimiteEmprestimos.ALUNOGRAD.getQtdDias();
+        this.qtdDiasDeEmprestimo = TempoEmprestimo.ALUNOPOS.getQtdDias();
+        this.limiteEmprestimosAtivos = LimiteEmprestimos.ALUNOPOS.getQtdDias();
     }
 
     @Override

@@ -58,5 +58,9 @@ public class Console {
 
         teclado.close();
     }
+
+    public static void imprimirMensagem(String msg){
+        System.out.println(msg);
+    }
     
 }
