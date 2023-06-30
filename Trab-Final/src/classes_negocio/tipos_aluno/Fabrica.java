@@ -8,4 +8,8 @@ public class Fabrica {
         return new EmprestimoAlunoGrad();
     }
 
+    public static int obterLimiteDeEmprestimosAlunoGrad() {
+        return 3;
+    }
+
 }

@@ -16,6 +16,7 @@ public class AlunoGrad implements IUsuario {
     private ArrayList<Reserva> reservasAtivas;
     private IVerificadorEmprestimo verificadorEmp;
     private int qtdDiasDeEmprestimo;
+    private int limiteEmprestimosAtivos;
 
     public AlunoGrad(String codigo, String nome){
         this.codigo = codigo;
@@ -26,6 +27,7 @@ public class AlunoGrad implements IUsuario {
         this.reservasAtivas = new ArrayList<>();
         this.verificadorEmp = Fabrica.obterVerificadorEmprestimoAlunoGrad();
         this.qtdDiasDeEmprestimo = TempoEmprestimo.ALUNOGRAD.getQtdDias();
+        this.limiteEmprestimosAtivos = Fabrica.obterLimiteDeEmprestimosAlunoGrad();
     }
 
     @Override
@@ -117,7 +119,7 @@ public class AlunoGrad implements IUsuario {
     }
 
     public int getQtdEmprestimosPossiveis(){
-        return this.qtdDiasDeEmprestimo;
+        return this.limiteEmprestimosAtivos;
     }
 
     public boolean fezReserva(Livro livro){

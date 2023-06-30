@@ -1,29 +1,29 @@
 
-- [ ] Cenario: AlunoGrad realizar emprestimo satisfazendo todas condições
+- [X] Cenario: AlunoGrad realizar emprestimo satisfazendo todas condições
       
 Pré-condições: ter um aluno grad, um livro, e um exemplar no sistema
 
 Resultado esperado: sistema imprimir o nome do usuario, o titulo do livro e uma mensagem de sucesso
 
-- [ ] Cenario: AlunoGrad realizar emprestimo quando nao existem exemplares
+- [X] Cenario: AlunoGrad realizar emprestimo quando nao existem exemplares
 
 Pré-condições: ter um aluno grad e um livro no sistema
 
 Resultado esperado: O emprestimo nao ser realizado, imprimir o nome do usuario, o titulo do livro e a mensagem "Não existe exemplar disponivel."
 
-- [ ] Cenario: AlunoGrad realizar emprestimo quando todos exemplares estao emprestados
+- [X] Cenario: AlunoGrad realizar emprestimo quando todos exemplares estao emprestados
 
 Pré-condições: ter um aluno grad, um livro no sistema e todos exemplares desse livro estarem emprestados
 
 Resultado esperado: O emprestimo nao ser realizado, imprimir o nome do usuario, o titulo do livro e a mensagem "Não existe exemplar disponivel."
 
-- [ ] Cenario: AlunoGrad realizar emprestimo quando todos exemplares estao reservados
+- [X] Cenario: AlunoGrad realizar emprestimo quando todos exemplares estao reservados
 
 Pré-condições: ter um aluno grad, um livro no sistema e todos exemplares desse livro estarem reservados
 
 Resultado esperado: O emprestimo nao ser realizado, imprimir o nome do usuario, o titulo do livro e a mensagem "Não existe exemplar disponivel."
 
-- [ ] Cenario: AlunoGrad realizar emprestimo enquanto estiver "devendo" um livro
+- [X] Cenario: AlunoGrad realizar emprestimo enquanto estiver "devendo" um livro
 
 Pré-condições: ter um aluno grad, dois livros, um exemplar de cada livro e o aluno estiver com um livro emprestado atrasado.
 
