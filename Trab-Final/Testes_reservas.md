@@ -16,8 +16,7 @@ Pré-condições: ter um aluno grad, um livro no sistema, um exemplar e o exempl
 
 Resultado esperado: sistema imprimir o nome do usuario, o titulo do livro e a mensagem de insucesso "Nao ha exemplares disponiveis."
 
-FALHOU
-- [ ] Cenario: AlunoGrad realizar reserva quando todos exemplares estao reservados 
+- [X] Cenario: AlunoGrad realizar reserva quando todos exemplares estao reservados 
       
 Pré-condições: ter um aluno grad, um livro no sistema, um exemplar e o exemplar estar reservado
 

@@ -71,12 +71,16 @@ public class BibliotecaFachada {
         IUsuario usuario = getUsuario(codigoUsuario);
         Livro livro = getLivro(codigoLivro);
         if(livro.existeExemplarDisponivel()){
-            Reserva reserva = usuario.reservarLivro(livro);
-            if(reserva != null){
-                livro.addReserva(reserva);
-                System.out.println("\nO usuário " + usuario.getNome() + " reservou o livro " + livro.getTitulo() + ".");
+            if(livro.getQtdExemplares() > livro.getQtdReservas()){
+                Reserva reserva = usuario.reservarLivro(livro);
+                if(reserva != null){
+                    livro.addReserva(reserva);
+                    System.out.println("\nO usuário " + usuario.getNome() + " reservou o livro " + livro.getTitulo() + ".");
+                } else {
+                    System.out.println("\nO usuário " + usuario.getNome() + " já está no limite de reservas.");
+                }
             } else {
-                System.out.println("\nO usuário já está no limite de reservas.");
+                System.out.println("\nTodos exemplares do livro " + livro.getTitulo() + " estão reservados.");
             }
         } else{
             System.out.println("\nNão existe exemplar disponivel do livro " + livro.getTitulo() + ".");
