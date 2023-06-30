@@ -2,7 +2,6 @@ package classes_negocio.tipos_aluno;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.time.*;
 
 import classes_negocio.*;
 import interfaces.IUsuario;
@@ -29,13 +28,12 @@ public class AlunoGrad implements IUsuario {
         this.qtdDiasDeEmprestimo = TempoEmprestimo.ALUNOGRAD.getQtdDias();
     }
 
-    //mudei o retorno da funcao de realizr emprestimo pra fazer as validacoes corretas
     @Override
     public boolean realizarEmprestimo(Livro livro) {
         if(this.verificadorEmp.verificar(this, livro)){
             Exemplar e = livro.getexisteExemplarDisponivel();
             e.setDisponibilidade(false);
-            Emprestimo emp = new Emprestimo(this, e, 3);
+            Emprestimo emp = new Emprestimo(this, e, this.qtdDiasDeEmprestimo);
             e.setEmprestimo(emp);
             this.emprestimos.add(emp);
             this.emprestimosAtivos.add(emp);
@@ -51,7 +49,6 @@ public class AlunoGrad implements IUsuario {
             if(emprestimo.getLivro() == livro){
                 emprestimo.removerExemplar();
                 this.emprestimosAtivos.remove(emprestimo);
-                System.out.println("\nExemplar do livro " + livro.getTitulo() + " devolvido com sucesso.");
                 return true;
             }
         }
@@ -65,10 +62,8 @@ public class AlunoGrad implements IUsuario {
             Reserva novaReserva = new Reserva(this, livro);
             this.reservas.add(novaReserva);
             this.reservasAtivas.add(novaReserva);
-            System.out.println("Livro reservado com sucesso.");
             return novaReserva;
         } else{
-            System.out.println("O usuário já está no limite de reservas.");
             return null;
         }
     }
@@ -93,10 +88,10 @@ public class AlunoGrad implements IUsuario {
         for(Reserva reserva : this.reservas){
             if(reserva.getLivro().equals(livro)){
                 this.reservas.remove(reserva);
-                System.out.println("\nReserva removida com sucesso.");
+//                System.out.println("\nReserva removida com sucesso.");
                 return;
             }
-            System.out.println("\nNão foi possível remover a reserva.");
+//            System.out.println("\nNão existe reserva desse livro.");
         }
     }
 

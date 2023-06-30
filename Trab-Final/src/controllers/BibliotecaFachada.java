@@ -57,13 +57,13 @@ public class BibliotecaFachada {
         if(livro.existeExemplarDisponivel()){
             if(livro.existeExemplarNaoReservado() || usuario.fezReserva(livro)){
                 if(usuario.realizarEmprestimo(livro)){
-                    System.out.println("Empréstimo  do livro " + livro.getTitulo() + " realizado para o usuário " + usuario.getNome() + ".");
+                    System.out.println("\nEmpréstimo  do livro " + livro.getTitulo() + " realizado para o usuário " + usuario.getNome() + ".");
                 }
             } else {
-                System.out.println("Não foi possível emprestar o livro " + livro.getTitulo() + " para o usuário " + usuario.getNome() + " pois os exemplares estão reservados ou emprestados.");
+                System.out.println("\nNão foi possível emprestar o livro " + livro.getTitulo() + " para o usuário " + usuario.getNome() + " pois os exemplares estão reservados ou emprestados.");
             }
         } else{
-            System.out.println("Não foi possível emprestar o livro " + livro.getTitulo() + " para o usuário " + usuario.getNome() + " pois não existe exemplar disponivel.");
+            System.out.println("\nNão foi possível emprestar o livro " + livro.getTitulo() + " para o usuário " + usuario.getNome() + " pois não existe exemplar disponivel.");
         }
     }
 
@@ -72,9 +72,14 @@ public class BibliotecaFachada {
         Livro livro = getLivro(codigoLivro);
         if(livro.existeExemplarDisponivel()){
             Reserva reserva = usuario.reservarLivro(livro);
-            livro.addReserva(reserva);
+            if(reserva != null){
+                livro.addReserva(reserva);
+                System.out.println("\nO usuário " + usuario.getNome() + " reservou o livro " + livro.getTitulo() + ".");
+            } else {
+                System.out.println("\nO usuário já está no limite de reservas.");
+            }
         } else{
-            System.out.println("Não existe exemplar disponivel.");
+            System.out.println("\nNão existe exemplar disponivel do livro " + livro.getTitulo() + ".");
         }
     }
 
@@ -84,6 +89,7 @@ public class BibliotecaFachada {
         String codigoExemplar = usuario.getExemplarEmprestado(livro);
         if(usuario.devolverExemplar(livro)){
             livro.setExemplarDisponivel(codigoExemplar);
+            System.out.println("\nExemplar do livro " + livro.getTitulo() + " devolvido pelo usuário " + usuario.getNome() + ".");
         } else {
             System.out.println("\nNão foi possível realizar a operação: o usuário " + usuario.getNome() + " não possui emprestimos do livro " + livro.getTitulo());
         }
