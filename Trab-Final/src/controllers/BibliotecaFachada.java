@@ -26,13 +26,29 @@ public class BibliotecaFachada {
     }
 
     public void inicializarBiblioteca(){
+        //Usuarios
         usuarios.add(new AlunoGrad("123", "João da Silva"));
+
         usuarios.add(new AlunoGrad("789", "Pedro Paulo"));
+        //Livros
         livros.add(new Livro("100", "Engenharia de Software", "AddisonWesley", "Ian Sommervile", "6", "2000"));
         livros.add(new Livro("101", "UML - Guia do Usuário", "Campus", "Grady Booch, James Rumbaugh, Ivar Jacobson", "7", "2000")); 
-        livros.get(0).addExemplar(new Exemplar(livros.get(0), "01"));
-        livros.get(0).addExemplar(new Exemplar(livros.get(0), "02"));
-        livros.get(1).addExemplar(new Exemplar(livros.get(1), "03"));        
+        livros.add(new Livro("200", "Code Complete", "Microsoft Press", "Steve McConnel", "2", "2014")); 
+        livros.add(new Livro("201", "Agile Software Development Principles, Patterns, and Practices", "Prentice Hall", "Robert Martin", "1", "2002")); 
+        livros.add(new Livro("300", "Refactoring: Improving the Design of Existing Code", "Addison-Wesley Professional", "Martin Fowler", "1", "1999"));
+        livros.add(new Livro("301", "Software Metrics: A Rigorous and Practical Approach", "CRC Press", "Norman Fenton, James Bieman", "3", "2014"));
+        livros.add(new Livro("400", "Design Patterns: Elements of Reusable Object-Oriented Software", "Addison-Wesley Professional", "Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides", "1", "1994"));
+        livros.add(new Livro("401", "UML Distilled: A Brief Guide to the Standard Object Modeling Language", "Addison-Wesley Professional", "Martin Fowler", "3", "2003"));
+        //Exemplares
+        livros.get(0).addExemplar(new Exemplar(livros.get(0), "01"));//100
+        livros.get(0).addExemplar(new Exemplar(livros.get(0), "02"));//100
+        livros.get(1).addExemplar(new Exemplar(livros.get(1), "03"));//101
+        livros.get(2).addExemplar(new Exemplar(livros.get(2), "04"));//200
+        livros.get(3).addExemplar(new Exemplar(livros.get(3), "05"));//201
+        livros.get(4).addExemplar(new Exemplar(livros.get(4), "06"));//300
+        livros.get(4).addExemplar(new Exemplar(livros.get(4), "07"));//300
+        livros.get(5).addExemplar(new Exemplar(livros.get(5), "08"));//400
+        livros.get(5).addExemplar(new Exemplar(livros.get(5), "09"));//400    
     }
 
     public void realizarEmprestimo(String codigoUsuario, String codigoLivro){
