@@ -7,8 +7,8 @@ import classes_negocio.Emprestimo;
 import classes_negocio.Exemplar;
 import classes_negocio.Livro;
 import classes_negocio.Reserva;
-import classes_negocio.tipos_aluno.AlunoGrad;
-import classes_negocio.tipos_aluno.AlunoPos;
+import classes_negocio.tipos_usuario.AlunoGrad;
+import classes_negocio.tipos_usuario.AlunoPos;
 import interfaces.IUsuario;
 
 public class BibliotecaFachada {

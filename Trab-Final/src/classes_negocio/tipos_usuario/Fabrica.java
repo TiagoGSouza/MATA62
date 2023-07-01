@@ -1,4 +1,4 @@
-package classes_negocio.tipos_aluno;
+package classes_negocio.tipos_usuario;
 import classes_negocio.tipos_emprestimo.VerificadorEmprestimoAluno;
 import interfaces.IVerificadorEmprestimo;
 

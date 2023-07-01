@@ -1,4 +1,4 @@
-package classes_negocio.tipos_aluno;
+package classes_negocio.tipos_usuario;
 
 import java.util.ArrayList;
 import java.util.List;
