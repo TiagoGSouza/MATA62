@@ -9,10 +9,10 @@ import classes_negocio.Livro;
 import classes_negocio.Reserva;
 import classes_negocio.tipos_emprestimo.regras.LimiteEmprestimos;
 import classes_negocio.tipos_emprestimo.regras.TempoEmprestimo;
-import interfaces.IUsuario;
+import interfaces.IAluno;
 import interfaces.IVerificadorEmprestimo;
 
-public class AlunoPos implements IUsuario{
+public class AlunoPos implements IAluno {
     private String codigo;
     private String nome;
     private ArrayList<Reserva> reservas;
@@ -38,7 +38,7 @@ public class AlunoPos implements IUsuario{
     @Override
     public boolean realizarEmprestimo(Livro livro) {
         if(this.verificadorEmp.verificar(this, livro)){
-            Exemplar e = livro.getexisteExemplarDisponivel();
+            Exemplar e = livro.getExemplarDisponivel();
             e.setDisponibilidade(false);
             Emprestimo emp = new Emprestimo(this, e, this.qtdDiasDeEmprestimo);
             e.setEmprestimo(emp);
@@ -95,10 +95,8 @@ public class AlunoPos implements IUsuario{
         for(Reserva reserva : this.reservas){
             if(reserva.getLivro().equals(livro)){
                 this.reservas.remove(reserva);
-//                System.out.println("\nReserva removida com sucesso.");
                 return;
             }
-//            System.out.println("\nNão existe reserva desse livro.");
         }
     }
 

@@ -5,6 +5,7 @@ import classes_negocio.tipos_emprestimo.tipos_verificador.VerificadorAtraso;
 import classes_negocio.tipos_emprestimo.tipos_verificador.VerificadorEmprestimosAtivos;
 import classes_negocio.tipos_emprestimo.tipos_verificador.VerificadorLimiteEmprestimos;
 import classes_negocio.tipos_emprestimo.tipos_verificador.VerificadorReserva;
+import interfaces.IAluno;
 import interfaces.IUsuario;
 import interfaces.IVerificadorEmprestimo;
 
@@ -35,7 +36,7 @@ public class VerificadorEmprestimoAluno implements IVerificadorEmprestimo{
       return false;
     }
 
-    if(!verificadorLimiteEmprestimos.usuarioValido(usuario)){
+    if(!verificadorLimiteEmprestimos.usuarioValido( (IAluno) usuario)){
       System.err.println("\nO usuário " + usuario.getNome() + " ultrapassou o limite de empréstimos.");
       return false;
     }

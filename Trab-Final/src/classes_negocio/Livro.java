@@ -41,7 +41,7 @@ public class Livro {
     this.qtdExemplares += 1;
   }
   
-  public Exemplar getexisteExemplarDisponivel(){
+  public Exemplar getExemplarDisponivel(){
     for (Exemplar exemplar : listaExemplares) {
       if(exemplar.getDisponibilidade()){
         return exemplar;
