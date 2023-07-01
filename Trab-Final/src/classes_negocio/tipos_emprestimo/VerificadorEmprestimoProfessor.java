@@ -9,6 +9,10 @@ public class VerificadorEmprestimoProfessor implements IVerificadorEmprestimo {
 
     private VerificadorAtraso verificadorAtraso;
 
+    public VerificadorEmprestimoProfessor(){
+    this.verificadorAtraso = new VerificadorAtraso();
+  }
+
     @Override
     public boolean verificar(IUsuario usuario, Livro livro) {
 

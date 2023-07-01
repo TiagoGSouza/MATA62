@@ -9,6 +9,7 @@ import classes_negocio.Livro;
 import classes_negocio.Reserva;
 import classes_negocio.tipos_usuario.AlunoGrad;
 import classes_negocio.tipos_usuario.AlunoPos;
+import classes_negocio.tipos_usuario.Professor;
 import interfaces.IUsuario;
 
 public class BibliotecaFachada {
@@ -31,6 +32,7 @@ public class BibliotecaFachada {
         usuarios.add(new AlunoGrad("123", "João da Silva"));
         usuarios.add(new AlunoPos("456", "Luiz Fernando Rodrigues"));
         usuarios.add(new AlunoGrad("789", "Pedro Paulo"));
+        usuarios.add(new Professor("100", "Carlos Lucena"));
         //Livros
         livros.add(new Livro("100", "Engenharia de Software", "AddisonWesley", "Ian Sommervile", "6", "2000"));
         livros.add(new Livro("101", "UML - Guia do Usuário", "Campus", "Grady Booch, James Rumbaugh, Ivar Jacobson", "7", "2000")); 
