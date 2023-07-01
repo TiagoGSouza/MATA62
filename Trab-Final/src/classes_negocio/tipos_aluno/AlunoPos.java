@@ -7,6 +7,8 @@ import classes_negocio.Emprestimo;
 import classes_negocio.Exemplar;
 import classes_negocio.Livro;
 import classes_negocio.Reserva;
+import classes_negocio.tipos_emprestimo.regras.LimiteEmprestimos;
+import classes_negocio.tipos_emprestimo.regras.TempoEmprestimo;
 import interfaces.IUsuario;
 import interfaces.IVerificadorEmprestimo;
 

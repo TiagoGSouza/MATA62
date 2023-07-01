@@ -1,4 +1,4 @@
-package classes_negocio.tipos_aluno;
+package classes_negocio.tipos_emprestimo.regras;
 
 public enum TempoEmprestimo {
     ALUNOGRAD (3), 

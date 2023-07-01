@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import classes_negocio.*;
+import classes_negocio.tipos_emprestimo.regras.LimiteEmprestimos;
+import classes_negocio.tipos_emprestimo.regras.TempoEmprestimo;
 import interfaces.IUsuario;
 import interfaces.IVerificadorEmprestimo;
 
