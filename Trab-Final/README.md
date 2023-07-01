@@ -11,4 +11,4 @@
 - [ ] Comando: Observar
 - [ ] Atribuir funcionalidades aos outros tipos de usuário (alunoPos, professor)
 - [ ] Documentar código
-- [ ] **Refatoração**: EmprestimoAlunoGrad -> Excluir classe "God" e criar classes de verificação
+- [X] **Refatoração**: EmprestimoAlunoGrad -> Excluir classe "God" e criar classes de verificação

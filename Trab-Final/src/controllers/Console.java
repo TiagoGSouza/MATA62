@@ -6,9 +6,11 @@ import java.util.Scanner;
 
 import controllers.tipos_comando.ConsultarAluno;
 import controllers.tipos_comando.ConsultarLivro;
+import controllers.tipos_comando.ConsultarProfessor;
 import controllers.tipos_comando.DevolverLivro;
 import controllers.tipos_comando.FinalizaApp;
 import controllers.tipos_comando.RealizarEmprestimo;
+import controllers.tipos_comando.RegistrarObservador;
 import controllers.tipos_comando.ReservarLivro;
 import interfaces.IComandos;
 
@@ -24,10 +26,12 @@ public class Console {
         this.comandos.put("emp", new RealizarEmprestimo());
         this.comandos.put("dev", new DevolverLivro());
         this.comandos.put("res", new ReservarLivro());
-
+        this.comandos.put("obs", new RegistrarObservador());
         this.comandos.put("liv", new ConsultarLivro());
         this.comandos.put("usu", new ConsultarAluno());
-        this.comandos.put("sai", new FinalizaApp());
+        this.comandos.put("ntf", new ConsultarProfessor());
+
+        this.comandos.put("sai", new FinalizaApp()); 
     }
 
     public void programa(){

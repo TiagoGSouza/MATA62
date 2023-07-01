@@ -11,6 +11,7 @@ import classes_negocio.tipos_usuario.AlunoGrad;
 import classes_negocio.tipos_usuario.AlunoPos;
 import classes_negocio.tipos_usuario.Professor;
 import interfaces.IUsuario;
+import interfaces.Observer;
 
 public class BibliotecaFachada {
 
@@ -164,4 +165,16 @@ public class BibliotecaFachada {
         return null;
     }
     
+    public void registrarObservador(String codigoUsuario, String codigoLivro){
+        Livro livro = getLivro(codigoLivro);
+        IUsuario usuario = getUsuario(codigoUsuario);
+
+        livro.registrarObserver( (Observer) usuario);
+    }
+
+    public void consultarProfessor(String codigoProf){
+        Observer professor = (Observer) getUsuario(codigoProf);
+        System.out.println( professor.getNotificacoes());
+    }
+
 }

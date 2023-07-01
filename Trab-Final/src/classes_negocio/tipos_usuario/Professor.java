@@ -10,8 +10,9 @@ import classes_negocio.Reserva;
 import classes_negocio.tipos_emprestimo.regras.TempoEmprestimo;
 import interfaces.IUsuario;
 import interfaces.IVerificadorEmprestimo;
+import interfaces.Observer;
 
-public class Professor implements IUsuario {
+public class Professor implements IUsuario, Observer {
     private String codigo;
     private String nome;
     private ArrayList<Reserva> reservas;
@@ -20,6 +21,7 @@ public class Professor implements IUsuario {
     private ArrayList<Reserva> reservasAtivas;
     private IVerificadorEmprestimo verificadorEmp;
     private int qtdDiasDeEmprestimo;
+    private int notificacoes;
 
     public Professor(String codigo, String nome){
         this.codigo = codigo;
@@ -30,6 +32,7 @@ public class Professor implements IUsuario {
         this.reservasAtivas = new ArrayList<>();
         this.verificadorEmp = Fabrica.obterVerificadorEmprestimoProfessor();
         this.qtdDiasDeEmprestimo = TempoEmprestimo.PROFESSOR.getQtdDias();
+        this.notificacoes = 0;
     }
 
     @Override
@@ -123,5 +126,15 @@ public class Professor implements IUsuario {
         } else {
             return "Finalizado";
         }
-    }    
+    }
+
+    @Override
+    public void update() {
+        this.notificacoes += 1;
+    }
+    
+    @Override
+    public int getNotificacoes(){
+        return this.notificacoes;
+    }
 }

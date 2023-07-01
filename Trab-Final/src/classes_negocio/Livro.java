@@ -3,7 +3,10 @@ package classes_negocio;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Livro {
+import interfaces.Observer;
+import interfaces.Subject;
+
+public class Livro implements Subject {
   private List<Exemplar> listaExemplares;
   private List<Reserva> listaReservas;
   private int qtdReservas;
@@ -14,6 +17,7 @@ public class Livro {
   private String autores;
   private String edicao;
   private String anoPublicacao;
+  private List<Observer> observadores;
 
   public Livro(String codigo, String titulo, String editora, String autores, String edicao, String anoPublicacao){
     this.codigo = codigo;
@@ -26,6 +30,7 @@ public class Livro {
     this.listaReservas = new ArrayList<>();
     this.qtdReservas=0;
     this.qtdExemplares=0;
+    this.observadores = new ArrayList<>();
   }
 
   public int getQtdReservas(){
@@ -57,6 +62,9 @@ public class Livro {
   public void addReserva(Reserva reserva){
     this.listaReservas.add(reserva);
     this.qtdReservas += 1;
+    if(this.qtdReservas > 2){
+      notificarObservadores();
+    }
   }
 
   public boolean existeExemplarDisponivel(){
@@ -94,5 +102,21 @@ public class Livro {
     return this.listaExemplares;
   }
 
+  @Override
+  public void registrarObserver(Observer observer) {
+    observadores.add(observer);
+  }
+
+  @Override
+  public void removerObserver(Observer observer) {
+    this.observadores.remove(observer);
+  }
+
+  @Override
+  public void notificarObservadores() {
+    for (Observer observer : this.observadores) {
+      observer.update();
+    }
+  }
 }
 
