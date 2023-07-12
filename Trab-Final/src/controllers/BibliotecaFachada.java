@@ -60,32 +60,40 @@ public class BibliotecaFachada {
     public void realizarEmprestimo(String codigoUsuario, String codigoLivro){
         IUsuario usuario = getUsuario(codigoUsuario);
         Livro livro = getLivro(codigoLivro);
+        String resp;
         if(livro.existeExemplarDisponivel()){
             if(usuario.realizarEmprestimo(livro)){
-                System.out.println("\nEmpréstimo  do livro " + livro.getTitulo() + " realizado para o usuário " + usuario.getNome() + ".");
+                resp = "\nEmpréstimo  do livro " + livro.getTitulo() + " realizado para o usuário " + usuario.getNome() + ".";
+                Console.imprimirMensagem(resp);
             }
         } else{
-            System.out.println("\nNão foi possível emprestar o livro " + livro.getTitulo() + " para o usuário " + usuario.getNome() + " pois não existe exemplar disponivel.");
+            resp = "\nNão foi possível emprestar o livro " + livro.getTitulo() + " para o usuário " + usuario.getNome() + " pois não existe exemplar disponivel.";
+            Console.imprimirMensagem(resp);
         }
     }
 
     public void reservarLivro(String codigoUsuario, String codigoLivro){
         IUsuario usuario = getUsuario(codigoUsuario);
         Livro livro = getLivro(codigoLivro);
+        String resp;
         if(livro.existeExemplarDisponivel()){
             if(livro.getQtdExemplares() > livro.getQtdReservas()){
                 Reserva reserva = usuario.reservarLivro(livro);
                 if(reserva != null){
                     livro.addReserva(reserva);
-                    System.out.println("\nO usuário " + usuario.getNome() + " reservou o livro " + livro.getTitulo() + ".");
+                    resp = "\nO usuário " + usuario.getNome() + " reservou o livro " + livro.getTitulo() + ".";
+                    Console.imprimirMensagem(resp);
                 } else {
-                    System.out.println("\nO usuário " + usuario.getNome() + " já está no limite de reservas.");
+                    resp = "\nO usuário " + usuario.getNome() + " já está no limite de reservas.";
+                    Console.imprimirMensagem(resp);
                 }
             } else {
-                System.out.println("\nTodos exemplares do livro " + livro.getTitulo() + " estão reservados.");
+                resp = "\nTodos exemplares do livro " + livro.getTitulo() + " estão reservados.";
+                Console.imprimirMensagem(resp);
             }
         } else{
-            System.out.println("\nNão existe exemplar disponivel do livro " + livro.getTitulo() + ".");
+            resp = "\nNão existe exemplar disponivel do livro " + livro.getTitulo() + ".";
+            Console.imprimirMensagem(resp);
         }
     }
 
@@ -93,11 +101,14 @@ public class BibliotecaFachada {
         IUsuario usuario = getUsuario(codigoUsuario);
         Livro livro = getLivro(codigoLivro);
         String codigoExemplar = usuario.getExemplarEmprestado(livro);
+        String resp;
         if(usuario.devolverExemplar(livro)){
             livro.setExemplarDisponivel(codigoExemplar);
-            System.out.println("\nExemplar do livro " + livro.getTitulo() + " devolvido pelo usuário " + usuario.getNome() + ".");
+            resp = "\nExemplar do livro " + livro.getTitulo() + " devolvido pelo usuário " + usuario.getNome() + ".";
+            Console.imprimirMensagem(resp);
         } else {
-            System.out.println("\nNão foi possível realizar a operação: o usuário " + usuario.getNome() + " não possui emprestimos do livro " + livro.getTitulo());
+            resp = "\nNão foi possível realizar a operação: o usuário " + usuario.getNome() + " não possui emprestimos do livro " + livro.getTitulo();
+            Console.imprimirMensagem(resp);
         }
     }
 
@@ -105,22 +116,22 @@ public class BibliotecaFachada {
         Livro livro = getLivro(codigoLivro);
         int nReservas = livro.getQtdReservas();
         // Titulo
-        System.out.println("\nTítulo: " + livro.getTitulo());
+        Console.imprimirMensagem("\nTítulo: " + livro.getTitulo());
         // Reservas
         if(nReservas == 0){
-            System.out.println("Número de reservas: " + nReservas);
+            Console.imprimirMensagem("Número de reservas: " + nReservas);
         }else{
-            System.out.println("Reservas: ");
+            Console.imprimirMensagem("Reservas: ");
             int i = 1;
             for(Reserva reserva : livro.getReservas()){
-                System.out.println(i + ". " + reserva.getUsuarioNome());
+                Console.imprimirMensagem(i + ". " + reserva.getUsuarioNome());
                 i = i+1;
             }
         }
         // Exemplares
-        System.out.println("\nExemplares: \nCodigo | Status | Nome do Usuario | Data de Emprestimo | Data de Devolucao");
+        Console.imprimirMensagem("\nExemplares: \nCodigo | Status | Nome do Usuario | Data de Emprestimo | Data de Devolucao");
         for(Exemplar exemplar : livro.getExemplares()){
-            System.out.println(exemplar.getCodigo() + " | " + exemplar.getStringDisponibilidade() + " | " + exemplar.getEmprestimoUsuarioNome() + " | " + exemplar.getEmprestimoDataEmp() + " | " + exemplar.getEmprestimoDataDev());
+            Console.imprimirMensagem(exemplar.getCodigo() + " | " + exemplar.getStringDisponibilidade() + " | " + exemplar.getEmprestimoUsuarioNome() + " | " + exemplar.getEmprestimoDataEmp() + " | " + exemplar.getEmprestimoDataDev());
         }
 
     }
@@ -128,24 +139,24 @@ public class BibliotecaFachada {
     public void consultarAluno(String codigoAluno){
         IUsuario usuario = getUsuario(codigoAluno);
         try{
-            System.out.println("\nEmprestimos: \nTitulo | Data de Emprestimo | Status | Data de Devolucao");
+            Console.imprimirMensagem("\nEmprestimos: \nTitulo | Data de Emprestimo | Status | Data de Devolucao");
             int i = 1;
             for (Emprestimo emprestimo : usuario.getEmprestimos()) {
-                System.out.println(i + ". " + emprestimo.getTituloLivro() + " | " + emprestimo.getDataEmprestimo() + " | " + usuario.getStatusEmprestimo(emprestimo) + " | " + emprestimo.getDataDevolucao());
+                Console.imprimirMensagem(i + ". " + emprestimo.getTituloLivro() + " | " + emprestimo.getDataEmprestimo() + " | " + usuario.getStatusEmprestimo(emprestimo) + " | " + emprestimo.getDataDevolucao());
                 i=i+1;            
             }
         }catch(Exception e){
-                System.out.println("O usuário não possui emprestimos.");
+                Console.imprimirMensagem("O usuário não possui emprestimos.");
         }
         try{
-            System.out.println("\nReservas: \nTitulo | Data de solicitação");
+            Console.imprimirMensagem("\nReservas: \nTitulo | Data de solicitação");
             int j = 1;
             for (Reserva reserva : usuario.getReservas()) {
-                System.out.println(j + ". " + reserva.getTituloLivro() + " | " + reserva.getDataReserva());
+                Console.imprimirMensagem(j + ". " + reserva.getTituloLivro() + " | " + reserva.getDataReserva());
                 j=j+1;
             }
         } catch (Exception e){
-            System.out.println("O usuário não possui reservas.");
+            Console.imprimirMensagem("O usuário não possui reservas.");
         }
     }
 
@@ -176,7 +187,8 @@ public class BibliotecaFachada {
 
     public void consultarProfessor(String codigoProf){
         Observer professor = (Observer) getUsuario(codigoProf);
-        System.out.println( professor.getNotificacoes());
+        String resp = Integer.toString(professor.getNotificacoes());
+        Console.imprimirMensagem(resp);
     }
 
 }

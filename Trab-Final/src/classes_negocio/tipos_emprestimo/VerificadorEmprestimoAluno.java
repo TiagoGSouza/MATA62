@@ -8,6 +8,7 @@ import classes_negocio.tipos_emprestimo.tipos_verificador.VerificadorReserva;
 import interfaces.IAluno;
 import interfaces.IUsuario;
 import interfaces.IVerificadorEmprestimo;
+import controllers.Console;
 
 /* 
 as verificações das regras de emprestimo podem ser todos em uma classe ou metodo usando ifs
@@ -32,22 +33,22 @@ public class VerificadorEmprestimoAluno implements IVerificadorEmprestimo{
   public boolean verificar(IUsuario usuario, Livro livro){
 
     if(!verificadorAtraso.usuarioValido(usuario)){
-      System.err.println("\nO usuário " + usuario.getNome() + " possui exemplares ainda não devolvidos em atraso.");
+      Console.imprimirMensagem("\nO usuário " + usuario.getNome() + " possui exemplares ainda não devolvidos em atraso.");
       return false;
     }
 
     if(!verificadorLimiteEmprestimos.usuarioValido( (IAluno) usuario)){
-      System.err.println("\nO usuário " + usuario.getNome() + " ultrapassou o limite de empréstimos.");
+      Console.imprimirMensagem("\nO usuário " + usuario.getNome() + " ultrapassou o limite de empréstimos.");
       return false;
     }
 
     if(!verificadorEmprestimosAtivos.usuarioValido(usuario, livro)){
-      System.err.println("\nO livro " + livro.getTitulo() + " já está emprestado ao usuário " + usuario.getNome() + ".");
+      Console.imprimirMensagem("\nO livro " + livro.getTitulo() + " já está emprestado ao usuário " + usuario.getNome() + ".");
       return false;
     }
 
     if(!(verificadorReserva.usuarioValido(usuario, livro) || livro.existeExemplarNaoReservado())){
-      System.out.println("\nO usuário " + usuario.getNome() + " não fez reserva do livro " + livro.getTitulo() + ".");
+      Console.imprimirMensagem("\nO usuário " + usuario.getNome() + " não fez reserva do livro " + livro.getTitulo() + ".");
       return false;
     }
 
