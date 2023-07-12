@@ -6,7 +6,8 @@ import interfaces.IComandos;
 public class ConsultarProfessor implements IComandos{
 
     @Override
-    public boolean executa(BibliotecaFachada biblioteca, String parametros) {
+    public boolean executa(String parametros) {
+        BibliotecaFachada biblioteca = BibliotecaFachada.obterInstancia();
         biblioteca.consultarProfessor(parametros);
         return true;
     }

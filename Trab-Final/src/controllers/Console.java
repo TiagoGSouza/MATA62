@@ -55,7 +55,7 @@ public class Console {
             }
             
             IComandos c = comandos.get(comando);
-            condicao = c.executa(biblioteca, parametros);
+            condicao = c.executa(parametros);
             System.out.println("");
 
         }
